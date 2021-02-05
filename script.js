@@ -41,13 +41,12 @@ $(document).ready(function () {
     //loops through hours to highlight past, present, future
     function isPastPresentFuture(item) {
         var assessHour = parseInt(item);
-
-        if (currentMilHour > assessHour * 10000) {
+        if (currentMilHour >= assessHour * 10000 && currentMilHour < (assessHour + 1) * 10000) {
+            $("#" + assessHour).addClass("present");
+        } else if (currentMilHour > assessHour * 10000) {
             $("#" + assessHour).addClass("past");
         } else if (currentMilHour < assessHour * 10000) {
             $("#" + assessHour).addClass("future");
-        } else {
-            $("#" + assessHour).addClass("present");
         };
     };
 
